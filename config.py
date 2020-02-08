@@ -3,7 +3,7 @@ class Config:
     '''
     General configuration parent class
     '''
-    
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class ProdConfig(Config):
     '''
@@ -21,5 +21,6 @@ class DevConfig(Config):
 
 config_options = {
 'development':DevConfig,
-'production':ProdConfig
+'production':ProdConfig,
+'test':TestConfig
 }
