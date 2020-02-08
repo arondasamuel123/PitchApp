@@ -1,10 +1,13 @@
-from flask import Flask,render_template
+from app import create_app
+from flask_script import Manager, Server
 
-app = Flask(__name__)
+app = create_app('development')
+manager = Manager(app)
+manager.add_command('serve',Server)
 
-@app.route("/")
-def home():
-    return render_template('home.html')
- 
-app.run(debug=True)
+
+
+if __name__== '__main__':
+    manager.run()
+
  
