@@ -1,4 +1,5 @@
 from . import db
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class User(db.Model):
@@ -10,10 +11,18 @@ class User(db.Model):
     profile_image = db.Column(db.String(255))
     pitches = db.relationship('Pitch',backref = 'user',lazy='dynamic')
     comments = db.relationship('Comment', backref = 'user', lazy= 'dynamic')
+    @property
+    def password(self):
+        raise AttributeError('You cant read password attribute)
     
+    @password.setter
+    def password(self,password):
+        self.password = generate_password_hash(password)
+    def verify_password(cls, password):
+        return check_password_hash(self.password,password)
     
 class Pitch(db.Model):
-    __tablename__='pitches'
+    __tablename__ ='pitches'
     id = db.Column(db.Integer, primary_key=True)
     category = db.Column(db.String(255))
     mintute_pitch = db.Column(db.String(255))

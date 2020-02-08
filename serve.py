@@ -13,7 +13,7 @@ def test():
     tests = unittest.TestLoader().discover('tests')
     unittest.TextTestRunner(verbosity=2).run(tests)
     
-@manager.shell
+# @manager.shell
 # def make_shell_context():
 #     return dict(app= app, db = db, User = User, Pitch = Pitch, Comment = Comment)
 
