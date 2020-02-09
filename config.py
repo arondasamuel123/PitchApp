@@ -3,18 +3,18 @@ class Config:
     '''
     General configuration parent class
     '''
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://user:123456@localhost/pitch'
 
 class ProdConfig(Config):
     '''
     Production config child class
     '''
 
-class TestConfig(Config):
-    '''
-    Test config child class
-    '''
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://user:123456@localhost/pitch_test'
+# class TestConfig(Config):
+#     '''
+#     Test config child class
+#     '''
+#     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://user:123456@localhost/pitch_test'
 
 class DevConfig(Config):
     DEBUG = True
@@ -22,5 +22,5 @@ class DevConfig(Config):
 config_options = {
 'development':DevConfig,
 'production':ProdConfig,
-'test':TestConfig
+# 'test':TestConfig
 }
