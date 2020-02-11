@@ -6,7 +6,8 @@ from ..models import Pitch
 
 @main.route('/')
 def home():
-    return render_template('home.html')
+    pitches = Pitch.query.all()
+    return render_template('home.html',pitches=pitches)
 
 
 @main.route('/add',methods = ["GET", "POST"])
@@ -17,8 +18,10 @@ def add_pitch():
         p_category = pitch_form.pitch_cat.data
         create_pitch = Pitch(category= p_category, mintute_pitch=pitch_form.pitch.data, user=current_user)
         create_pitch.save_pitch()
-        return "PITCH HAS BEEN INSERTED"
+        return redirect(url_for('main.home'))
     return render_template('pitch.html', pitch_form=pitch_form)
+
+
     
     
     
