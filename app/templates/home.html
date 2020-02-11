@@ -3,7 +3,17 @@
 {%block content%}
     {{super()}}
 
-    <h1>WELCOME TO PITCH APP</h1>
+    <div class="container">
+        <section>
+        <h1>WELCOME TO PITCH SOCIAL</h1>
+
+          <p>Write a pitch of your liking and get instant feedback from fellow pitchers</p>  
+            <a class="btn btn-primary" href="{{url_for('main.add_pitch')}}">
+                CLICK HERE TO GET STARTED
+            </a>
+        </section>
+
+    </div>
 {%endblock%}
 
 
