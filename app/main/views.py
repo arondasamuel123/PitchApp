@@ -61,6 +61,25 @@ def update_pic(id):
         db.session.commit()
     return redirect(url_for('main.user_profile', id= id))
 
+@main.route('/promotions')
+def get_promotions():
+    promotion_pitches = Pitch.query.filter_by(category='Promotion-Pitch').all()
+    
+    return render_template('promo_pitch.html', promotion_pitches=promotion_pitches)
+
+
+@main.route('/interviews')
+def get_interviews():
+    interview_pitches = Pitch.query.filter_by(category='Interview-Pitch').all()
+    
+    return render_template('interview_pitch.html', interview_pitches=interview_pitches)
+
+@main.route('/products')
+def get_products():
+    product_pitches = Pitch.query.filter_by(category='Product-Pitch').all()
+    
+    return render_template('product_pitch.html', product_pitches=product_pitches)
+
     
     
     
