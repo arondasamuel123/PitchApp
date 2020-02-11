@@ -42,6 +42,13 @@ def fet_comments(id):
     
     return render_template('viewcomments.html', fetch_comments=fetch_comments)
     
+@main.route('/profile/<int:id>')
+def user_profile(id):
+    # user = User.query.filter_by(id = id).first()
+    
+    pitches = Pitch.query.filter_by(user_id= id).all()
+    
+    return render_template('prof/profile.html', pitches=pitches)
 
     
     

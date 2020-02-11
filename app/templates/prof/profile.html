@@ -1,0 +1,26 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<div class="container">
+    <h1>Pitches</h1> 
+    {%for pitch in pitches%}
+    <div class="row">
+        <div class="col-md-8">
+            
+            
+            <div class="card text-white bg-success mb-3" style="width: 50rem;">
+                <div class="card-body">
+                  <h5 class="card-title">{{pitch.category}}</h5>
+                  
+                  <p class="card-text">{{pitch.mintute_pitch}}</p>
+                  
+                </div>
+              </div>
+
+        </div>
+    </div>
+    {%endfor%}
+
+</div>
+
+{%endblock%}
