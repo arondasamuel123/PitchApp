@@ -1,4 +1,4 @@
-from flask import render_template,redirect
+from flask import render_template,redirect, url_for
 from . import main
 from .forms import PitchForm, CommentForm
 from flask_login import current_user, login_required
@@ -30,8 +30,17 @@ def add_comment(id):
     if comment_form.validate_on_submit():
         new_comment = Comment(comment= comment_form.opinion.data, user=current_user,pitch=pitch_comment)
         new_comment.save_comment()
-        return "Comment has been made"
+
+        return redirect(url_for('main.add_comment'))
+    flash(u'Successfully added comment', 'success')
     return render_template('addcomments.html',comment_form=comment_form, pitch_comment=pitch_comment)
+
+@main.route('/viewcomments/<int:id>')
+@login_required
+def fet_comments(id):
+    fetch_comments = Comment.query.filter_by(pitch_id= id).all()
+    
+    return render_template('viewcomments.html', fetch_comments=fetch_comments)
     
 
     
