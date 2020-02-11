@@ -1,12 +1,13 @@
-from flask import render_template
+from flask import render_template,redirect
 from . import main
-from .forms import PitchForm
+from .forms import PitchForm, CommentForm
 from flask_login import current_user, login_required
-from ..models import Pitch
+from ..models import Pitch,Comment
 
 @main.route('/')
 def home():
     pitches = Pitch.query.all()
+    
     return render_template('home.html',pitches=pitches)
 
 
@@ -21,6 +22,17 @@ def add_pitch():
         return redirect(url_for('main.home'))
     return render_template('pitch.html', pitch_form=pitch_form)
 
+@main.route('/addcomment/<int:id>', methods = ["GET", "POST"])
+@login_required
+def add_comment(id):
+    comment_form = CommentForm()
+    pitch_comment = Pitch.query.get(id)
+    if comment_form.validate_on_submit():
+        new_comment = Comment(comment= comment_form.opinion.data, user=current_user,pitch=pitch_comment)
+        new_comment.save_comment()
+        return "Comment has been made"
+    return render_template('addcomments.html',comment_form=comment_form, pitch_comment=pitch_comment)
+    
 
     
     

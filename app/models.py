@@ -43,11 +43,11 @@ class Pitch(db.Model):
         db.session.add(self)
         db.session.commit()
         
-    def get_pitch(cls, category):
+    def get_pitch_by_category(cls, category):
         pitches = Pitch.query.filter_by(category=category).all()
         
         return pitches
-    def get_pitches(cls, id):
+    def get_pitch_by_id(cls, id):
         all_pitches = Pitch.query.filter_by(id = id).all()
         return all_pitches
     
