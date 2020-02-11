@@ -1,12 +1,16 @@
 {%extends 'base.html'%}
 
 {%block content%}
+{{super()}}
 <div class="container">
-    <h1>Pitches</h1> 
+    
+    <h1 align="center">{{user.username}} <br> 
+        <hr>
+        Pitches</h1> 
     {%for pitch in pitches%}
     <div class="row">
         <div class="col-md-8">
-            
+
             
             <div class="card text-white bg-success mb-3" style="width: 50rem;">
                 <div class="card-body">
@@ -20,6 +24,31 @@
         </div>
     </div>
     {%endfor%}
+
+
+    <section>
+        <div class="row">
+            <div class="col-md-6">
+                {% if user.profile_image %}
+
+    <img src="{{url_for('static',filename=user.profile_image)}}" alt="" class="img-thumbnail">
+
+    {%else%}
+    <p>No profile picture</p>
+
+    {% endif %}
+
+                {% if user == current_user %}     
+    <form  action="/updatepic/{{user.id}}" method="post" enctype = "multipart/form-data">
+
+      <input type="file"  name="photo" class="form-control" required>
+      <input class="btn btn-primary" placeholder="Submit photo" type="submit">
+    </form>
+    {% endif %}
+            </div>
+        </div>
+
+    </section>
 
 </div>
 

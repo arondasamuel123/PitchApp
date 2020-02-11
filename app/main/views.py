@@ -1,8 +1,9 @@
-from flask import render_template,redirect, url_for
+from flask import render_template,redirect, url_for,request,flash
 from . import main
 from .forms import PitchForm, CommentForm
 from flask_login import current_user, login_required
-from ..models import Pitch,Comment
+from ..models import Pitch,Comment,User
+from .. import photos,db
 
 @main.route('/')
 def home():
@@ -32,7 +33,7 @@ def add_comment(id):
         new_comment.save_comment()
 
         return redirect(url_for('main.add_comment'))
-    flash(u'Successfully added comment', 'success')
+    # flash(u'Successfully added comment', 'success')
     return render_template('addcomments.html',comment_form=comment_form, pitch_comment=pitch_comment)
 
 @main.route('/viewcomments/<int:id>')
@@ -44,11 +45,21 @@ def fet_comments(id):
     
 @main.route('/profile/<int:id>')
 def user_profile(id):
-    # user = User.query.filter_by(id = id).first()
+    user = current_user
     
     pitches = Pitch.query.filter_by(user_id= id).all()
     
-    return render_template('prof/profile.html', pitches=pitches)
+    return render_template('prof/profile.html', pitches=pitches, user=user)
+
+@main.route('/updatepic/<int:id>', methods=['POST'])
+def update_pic(id):
+    user = User.query.filter_by(id = id).first()
+    if 'photo' in request.files:
+        filename = photos.save(request.files['photo'])
+        path = f'photos/{filename}'
+        user.profile_image = path
+        db.session.commit()
+    return redirect(url_for('main.user_profile', id= id))
 
     
     
