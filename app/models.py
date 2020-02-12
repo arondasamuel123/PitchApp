@@ -16,11 +16,9 @@ class User(db.Model, UserMixin):
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
-    
-    
+
     def password(self):
         raise AttributeError('You cant read password attribute')
-    
     
     def password(self,password):
         self.pass_secure = generate_password_hash(password)
@@ -62,7 +60,7 @@ class Comment(db.Model):
         db.session.add(self)
         db.session.commit()
     
-    def get_comments(cls, pitch_id):
+    def get_comments(pitch_id):
         comments = Comment.query.filter_by(pitch_id=pitch_id).all()
         return comments
     

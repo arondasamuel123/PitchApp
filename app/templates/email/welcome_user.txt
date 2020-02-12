@@ -1,0 +1,2 @@
+Hello {{user.username}}
+Welcome to PitchSocial. This is a platform for you post pitches and have people give you feedback

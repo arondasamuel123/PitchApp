@@ -5,6 +5,7 @@ from .. import db
 from . import auth 
 from werkzeug.security import generate_password_hash
 from flask_login import login_user, logout_user
+from ..email import mail_message
 
 
 @auth.route('/register',methods = ["GET","POST"])
@@ -15,7 +16,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         
-        
+        mail_message("Welcome to PitchSocial","email/welcome_user", user.email, user=user)
         return redirect(url_for('auth.login'))
         
     return render_template('auth/register.html',registration_form = form)
@@ -31,6 +32,8 @@ def login():
             return redirect(request.args.get('next') or url_for('main.home'))
         flash('invalid username or password')
     return render_template('auth/login.html', login_form=login_form)
+
+
 
 @auth.route('/logout')
 def logout():
