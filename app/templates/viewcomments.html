@@ -4,6 +4,7 @@
     {{super()}}
 <div class="container">
     <h1 align="center">Comments</h1 a>
+{%if fetch_comments%}
 {%for comm in fetch_comments%}
 
         <div class="row">
@@ -24,5 +25,8 @@
             
         </div>
         {%endfor%}
+    {%else%}
+        <h3>No comments made </h3>
+    {%endif%}
     </div>
     {%endblock%}

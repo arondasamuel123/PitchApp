@@ -1,27 +1,28 @@
 {%extends 'base.html'%}
 {%block content%}
 {{super()}}
-<div class="container">
-    <h1 align="center">Promotion Pitches</h1>
+    <div>
+    <div class="promo">
+    <h1 style="color: #0a369d;" align="center">Promotion Pitches</h1>
+    <div class="row">
 {%for promo in promotion_pitches%}
-<div class="row">
-    <div class="col-md-2"></div>
-    
-    <div class= "col-md-8">
-        <div class="card text-white bg-dark mb-3" style="width: 18rem;">
+
+        <div class="card text-white bg-primary m-3" style="width: 20rem;">
             <div class="card-body">
               <h5 class="card-title">{{promo.category}}</h5>
               
               <p class="card-text">{{promo.mintute_pitch}}</p>
+              <strong><p class="card-text">Posted: {{promo.user.username}}</p></strong>
               <a style="color: white;" href="/addcomment/{{promo.id}}" class="card-link">Add Comment</a>
               <a style="color: white;" href="/viewcomments/{{promo.id}}" class="card-link">View Comments</a>
             </div>
           </div>
     
-    </div>
     
-</div>
+    
+
 {%endfor%}
+</div>
 </div>
 
 {%endblock%}

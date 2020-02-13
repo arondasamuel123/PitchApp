@@ -1,0 +1,75 @@
+* {
+    font-family: 'Raleway', sans-serif;
+}
+
+.center{
+    position: relative;
+    left: 450px;
+}
+
+/* .footer-dark {
+    padding:10px 0;
+    color:#f0f9ff;
+    background-color:#282d32;
+
+    position: absolute;
+    bottom: -400px;
+    width: 100%;
+  } */
+  
+ body {
+   background-color: #92b4f4;
+ }
+  
+  
+  
+  @media (max-width:767px) {
+    .footer-dark .item:not(.social) {
+      text-align:center;
+      padding-bottom:20px;
+    }
+  }
+  
+  .footer-dark .item.text {
+    margin-bottom:36px;
+  }
+  
+  @media (max-width:767px) {
+    .footer-dark .item.text {
+      margin-bottom:0;
+    }
+  }
+  
+  
+  
+  
+  @media (max-width:991px) {
+    .footer-dark .item.social {
+      text-align:center;
+      margin-top:20px;
+    }
+  }
+  
+  
+  
+  
+  .footer-dark .copyright {
+    text-align:center;
+    padding-top:24px;
+    font-size:20px;
+    margin-bottom:0;
+  }
+
+  .jumbotron{
+    background-color:#c9dcea !important;
+  }
+
+  .product{
+    background-color: #c9dcea;
+    height: 200vh;
+  }
+
+  .promo {
+    background-color: #c9dcea;
+    height: 200vh;
+  }

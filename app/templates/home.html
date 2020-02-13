@@ -3,35 +3,35 @@
 {%block content%}
     {{super()}}
 
-    <div class="container">
+        <div class="container">
         <div class="jumbotron">
-        <h1 align="center">WELCOME TO PITCH SOCIAL</h1 s>
+        <h1 align="center">WELCOME TO PITCH SOCIAL</h1>
 
-          <p align="center">Write a pitch of your liking and get instant feedback from fellow pitchers</p>  
-            <a align="center" class="btn btn-primary" href="{{url_for('main.add_pitch')}}">
-                CLICK HERE TO GET STARTED
+          <h4 align="center">Write a pitch of your liking and get instant feedback from fellow pitchers</h4>
+          <div class="center">
+            <a class="btn btn-primary mx-auto" href="{{url_for('main.add_pitch')}}">
+                CREATE PITCH HERE
             </a>
         </div>
-        {%for pitch in pitches%}
+        </div>
         <div class="row">
-            <div class="col-md-2"></div>
-            
-            <div class= "col-md-8">
-                <div class="card text-white bg-dark mb-3" style="width: 18rem;">
+        <div ></div>
+        {%for pitch in pitches%}
+
+                <div class="card text-white bg-info m-3" style="width: 20rem;">
                     <div class="card-body">
                       <h5 class="card-title">{{pitch.category}}</h5>
                       
                       <p class="card-text">{{pitch.mintute_pitch}}</p>
+                      <strong><p class="card-text">Posted by:{{pitch.user.username}}</p></strong>
                       <a style="color: white;" href="/addcomment/{{pitch.id}}" class="card-link">Add Comment</a>
                       <a style="color: white;" href="/viewcomments/{{pitch.id}}" class="card-link">View Comments</a>
                     </div>
                   </div>
-            
-            </div>
-            
-        </div>
         {%endfor%}
+                  
     </div>
+  </div>
 {%endblock%}
 
 
