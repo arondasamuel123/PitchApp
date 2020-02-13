@@ -32,7 +32,7 @@ def add_comment(id):
         new_comment = Comment(comment= comment_form.opinion.data, user=current_user,pitch=pitch_comment)
         new_comment.save_comment()
 
-        return redirect(url_for('main.add_comment'))
+        return redirect(url_for('main.home'))
     # flash(u'Successfully added comment', 'success')
     return render_template('addcomments.html',comment_form=comment_form, pitch_comment=pitch_comment)
 
