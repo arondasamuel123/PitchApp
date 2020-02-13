@@ -3,7 +3,7 @@ class Config:
     '''
     General configuration parent class
     '''
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://user:123456@localhost/pitch'
+    # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://user:123456@localhost/pitch'
     SECRET_KEY = os.environ.get('SECRET_KEY')
     UPLOADED_PHOTOS_DEST ='app/static/photos'
     
@@ -17,6 +17,7 @@ class ProdConfig(Config):
     '''
     Production config child class
     '''
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
 # class TestConfig(Config):
 #     '''
