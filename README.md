@@ -20,7 +20,7 @@ Samuel Aronda
 ## Clone
     Place your secret key, mail_username, mail_password in the start.sh
 ```bash
-    git clone https://github.com/arondasamuel123/PasswordLocker.git
+    git clone https://github.com/arondasamuel123/PitchApp.git
     
 ```
 ##  Create virtual environment
